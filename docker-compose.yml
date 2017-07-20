@@ -1,0 +1,25 @@
+version: "2"
+services:
+  mirth-db:
+    container_name: mirth-db_demo
+    image: uwitech/postgresql
+    volumes:
+      - mirth-pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=mirthdb
+      - POSTGRES_DB=mirthdb
+      - POSTGRES_PASSWORD=mirthdb
+    ports:
+      - "5432:5432"
+
+  mirth:
+    container_name: mirth-connect
+    image: uwitech/mirth-connect
+    depends_on:
+      - mirth-db
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+
+volumes:
+  mirth-pgdata:
