@@ -9,8 +9,6 @@ services:
       - POSTGRES_USER=mirthdb
       - POSTGRES_DB=mirthdb
       - POSTGRES_PASSWORD=mirthdb
-    ports:
-      - "5432:5432"
 
   mirth:
     container_name: mirth-connect
