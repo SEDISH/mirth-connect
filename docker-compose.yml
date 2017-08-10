@@ -12,11 +12,12 @@ services:
 
   mirth:
     container_name: mirth-connect
+    env_file: .env
     image: uwitech/mirth-connect
     depends_on:
       - mirth-db
     ports:
-      - "8080:8080"
+      - "8998:8998"
       - "8443:8443"
 
 volumes:

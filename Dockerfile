@@ -32,4 +32,12 @@ RUN chmod +x /tmp/setup_db.sh && \
 
 WORKDIR /opt/mirth-connect
 
-CMD ["java", "-jar", "mirth-server-launcher.jar"]
+COPY run.sh run.sh
+
+RUN chmod +x /opt/mirth-connect/run.sh
+
+ADD channels /opt/mirth-connect/channels
+
+
+ENTRYPOINT ["/opt/mirth-connect/run.sh"]
+

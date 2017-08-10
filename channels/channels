@@ -1,0 +1,2 @@
+import "/opt/mirth-connect/channels/Sender.xml"
+deploy
