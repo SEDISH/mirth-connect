@@ -3,12 +3,39 @@
   <nextMetaDataId>2</nextMetaDataId>
   <name>Sender</name>
   <description></description>
-  <revision>19</revision>
+  <revision>10</revision>
   <sourceConnector version="3.5.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
-    <properties class="com.mirth.connect.connectors.vm.VmReceiverProperties" version="3.5.0">
+    <properties class="com.mirth.connect.connectors.js.JavaScriptReceiverProperties" version="3.5.0">
       <pluginProperties/>
+      <pollConnectorProperties version="3.5.0">
+        <pollingType>INTERVAL</pollingType>
+        <pollOnStart>false</pollOnStart>
+        <pollingFrequency>3600000</pollingFrequency>
+        <pollingHour>0</pollingHour>
+        <pollingMinute>0</pollingMinute>
+        <cronJobs/>
+        <pollConnectorPropertiesAdvanced>
+          <weekly>true</weekly>
+          <inactiveDays>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+          </inactiveDays>
+          <dayOfMonth>1</dayOfMonth>
+          <allDay>true</allDay>
+          <startingHour>8</startingHour>
+          <startingMinute>0</startingMinute>
+          <endingHour>17</endingHour>
+          <endingMinute>0</endingMinute>
+        </pollConnectorPropertiesAdvanced>
+      </pollConnectorProperties>
       <sourceConnectorProperties version="3.5.0">
         <responseVariable>None</responseVariable>
         <respondAfterProcessing>true</respondAfterProcessing>
@@ -23,6 +50,7 @@
         </resourceIds>
         <queueBufferSize>1000</queueBufferSize>
       </sourceConnectorProperties>
+      <script>return &apos;dummy&apos;;</script>
     </properties>
     <transformer version="3.5.0">
       <elements/>
@@ -110,7 +138,7 @@
     <filter version="3.5.0">
       <elements/>
     </filter>
-    <transportName>Channel Reader</transportName>
+    <transportName>JavaScript Reader</transportName>
     <mode>SOURCE</mode>
     <enabled>true</enabled>
     <waitForPrevious>true</waitForPrevious>
@@ -392,12 +420,13 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1502281027939</time>
+        <time>1502355951360</time>
         <timezone>Europe/Warsaw</timezone>
       </lastModified>
       <pruningSettings>
         <archiveEnabled>true</archiveEnabled>
       </pruningSettings>
     </metadata>
+    <channelTags/>
   </exportData>
 </channel>
