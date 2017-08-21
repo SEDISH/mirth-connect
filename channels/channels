@@ -1,2 +1,5 @@
-import "/opt/mirth-connect/channels/Sender.xml"
+import "/opt/mirth-connect/channels/Get CCD Messages.xml"
+import "/opt/mirth-connect/channels/Get PIX Messages.xml"
+import "/opt/mirth-connect/channels/Get XDSb Messages.xml"
+import "/opt/mirth-connect/channels/Retry PIX Message.xml"
 deploy

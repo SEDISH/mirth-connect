@@ -1,9 +1,9 @@
 <channel version="3.5.0">
-  <id>0912befb-23f9-4a95-8e44-5b2d58364dd4</id>
+  <id>788ed977-2830-42fd-9c8d-25f94580ba0f</id>
   <nextMetaDataId>2</nextMetaDataId>
-  <name>Sender</name>
+  <name>Get CCD Messages</name>
   <description></description>
-  <revision>10</revision>
+  <revision>2</revision>
   <sourceConnector version="3.5.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -175,7 +175,14 @@
         <proxyPort></proxyPort>
         <method>get</method>
         <headers class="linked-hash-map"/>
-        <parameters class="linked-hash-map"/>
+        <parameters class="linked-hash-map">
+          <entry>
+            <string>type</string>
+            <list>
+              <string>CCD</string>
+            </list>
+          </entry>
+        </parameters>
         <responseXmlBody>false</responseXmlBody>
         <responseParseMultipart>true</responseParseMultipart>
         <responseIncludeMetadata>false</responseIncludeMetadata>
@@ -369,7 +376,23 @@
     </connector>
   </destinationConnectors>
   <preprocessingScript>// Modify the message variable below to pre process data
-return;</preprocessingScript>
+
+var format = &quot;yyyy-MM-dd&quot;;
+var latestFetchKey = &quot;latestFetchCCDMessages&quot;;
+var fromDateKey = &apos;fromDate&apos;;
+
+var currentDateString = DateUtil.getCurrentDate(format);
+
+if (globalMap.get(latestFetch)) {
+	globalMap.put(fromDateKey, globalMap.get(latestFetch));
+	globalMap.put(latestFetch, currentDateString);
+} else {
+	globalMap.put(fromDateKey, configurationMap.get(fromDateKey));
+	globalMap.put(latestFetch, currentDateString);
+}
+
+return;
+</preprocessingScript>
   <postprocessingScript>// This script executes once after a message has been processed
 // Responses returned from here will be stored as &quot;Postprocessor&quot; in the response map
 
@@ -420,7 +443,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1502355951360</time>
+        <time>1503322212585</time>
         <timezone>Europe/Warsaw</timezone>
       </lastModified>
       <pruningSettings>
