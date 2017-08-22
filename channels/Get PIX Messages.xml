@@ -3,7 +3,7 @@
   <nextMetaDataId>3</nextMetaDataId>
   <name>Get PIX Messages</name>
   <description></description>
-  <revision>73</revision>
+  <revision>76</revision>
   <sourceConnector version="3.5.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -308,7 +308,7 @@ ICJkYXRhIiA6IFsKICAgIHsKICAgICAgImlkIiA6IDEsCiAgICAgICJ1c2VyIiA6IHsKICAgICAg
 ICAidXVpZCIgOiAiYTc5ODM5MzUtNjU2ZC0xMWU3LTkyNTktMjA0NzQ3NzUwMWFhIiwKICAgICAg
 ICAibmFtZSIgOiAiIgogICAgICB9LAogICAgICAiZGVzdGluYXRpb24iIDogIkdkYW5zayIsCiAg
 ICAgICJ0aW1lc3RhbXAiIDogIjIwMTctMDYtMDYgMDA6MDA6MDAuMCIsCiAgICAgICJmYWlsdXJl
-IiA6IHRydWUsCiAgICAgICJ0eXBlIiA6ICJYRFNiIgogICAgfQogIF0KfQ==</inboundTemplate>
+IiA6IHRydWUsCiAgICAgICJ0eXBlIiA6ICJQSVgiCiAgICB9CiAgXQp9</inboundTemplate>
         <outboundTemplate encoding="base64"></outboundTemplate>
         <inboundDataType>JSON</inboundDataType>
         <outboundDataType>JSON</outboundDataType>
@@ -626,13 +626,12 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1503329036131</time>
+        <time>1503418451328</time>
         <timezone>Europe/Warsaw</timezone>
       </lastModified>
       <pruningSettings>
         <archiveEnabled>true</archiveEnabled>
       </pruningSettings>
     </metadata>
-    <channelTags/>
   </exportData>
 </channel>

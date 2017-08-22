@@ -1,9 +1,9 @@
 <channel version="3.5.0">
-  <id>ceeea11d-cb47-4063-9a31-68f95b6567d9</id>
+  <id>e2244635-97f5-4799-8c8b-3022068f694a</id>
   <nextMetaDataId>2</nextMetaDataId>
-  <name>Retry PIX Message</name>
+  <name>Retry CCD Message</name>
   <description></description>
-  <revision>13</revision>
+  <revision>5</revision>
   <sourceConnector version="3.5.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -336,7 +336,7 @@
   ]
  */
  //TODO: iterate array and send retries to iSantePlus rest/isanteplus/messages/{id}/retry. That request should update fields retried and retryTimestamp from message.
-var messagesToRetryArray = globalMap.get(&apos;pixMessages&apos;);
+var messagesToRetryArray = globalMap.get(&apos;ccdMessages&apos;);
 
 if (null != messagesToRetryArray) {
 	for(var i = 0; i &lt; messagesToRetryArray.length; i++) {
@@ -391,7 +391,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1503418330864</time>
+        <time>1503418317067</time>
         <timezone>Europe/Warsaw</timezone>
       </lastModified>
       <pruningSettings>

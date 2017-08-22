@@ -1,5 +1,16 @@
-import "/opt/mirth-connect/channels/Get CCD Messages.xml"
-import "/opt/mirth-connect/channels/Get PIX Messages.xml"
-import "/opt/mirth-connect/channels/Get XDSb Messages.xml"
-import "/opt/mirth-connect/channels/Retry PIX Message.xml"
-deploy
+import "/opt/mirth-connect/channels/Retry CCD Message.xml" force
+import "/opt/mirth-connect/channels/Retry PIX Message.xml" force
+import "/opt/mirth-connect/channels/Retry XDSB Message.xml" force
+
+import "/opt/mirth-connect/channels/Get CCD Messages.xml" force
+import "/opt/mirth-connect/channels/Get PIX Messages.xml" force
+import "/opt/mirth-connect/channels/Get XDSB Messages.xml" force
+
+deploy "Retry CCD Message"
+deploy "Retry XDSB Message"
+deploy "Retry PIX Message"
+
+deploy "Get CCD Messages"
+deploy "Get XDSB Messages"
+deploy "Get PIX Messages"
+
