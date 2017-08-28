@@ -1,9 +1,9 @@
 <channel version="3.5.0">
-  <id>ceeea11d-cb47-4063-9a31-68f95b6567d9</id>
-  <nextMetaDataId>4</nextMetaDataId>
-  <name>Retry PIX Message</name>
+  <id>66ac6803-c52e-4adf-bbbb-b558962d1826</id>
+  <nextMetaDataId>2</nextMetaDataId>
+  <name>PixMessageRetryFailed</name>
   <description></description>
-  <revision>38</revision>
+  <revision>8</revision>
   <sourceConnector version="3.5.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -131,7 +131,7 @@
           <includeFilterTransformer>false</includeFilterTransformer>
           <threadCount>1</threadCount>
           <threadAssignmentVariable></threadAssignmentVariable>
-          <validateResponse>true</validateResponse>
+          <validateResponse>false</validateResponse>
           <resourceIds class="linked-hash-map">
             <entry>
               <string>Default Resource</string>
@@ -139,9 +139,9 @@
             </entry>
           </resourceIds>
           <queueBufferSize>1000</queueBufferSize>
-          <reattachAttachments>false</reattachAttachments>
+          <reattachAttachments>true</reattachAttachments>
         </destinationConnectorProperties>
-        <host>${env.get(&apos;OPENHIM_URL&apos;)}</host>
+        <host>${env.get(&apos;I_SANTE_PLUS_HOST&apos;)}:${env.get(&apos;I_SANTE_PLUS_PORT&apos;)}${env.get(&apos;I_SANTE_PLUS_MESSAGES_PATH&apos;)}${messageID}/update</host>
         <useProxyServer>false</useProxyServer>
         <proxyAddress></proxyAddress>
         <proxyPort></proxyPort>
@@ -152,28 +152,24 @@
         <responseParseMultipart>true</responseParseMultipart>
         <responseIncludeMetadata>false</responseIncludeMetadata>
         <responseBinaryMimeTypes>application/.*(?&lt;!json|xml)$|image/.*|video/.*|audio/.*</responseBinaryMimeTypes>
-        <responseBinaryMimeTypesRegex>false</responseBinaryMimeTypesRegex>
+        <responseBinaryMimeTypesRegex>true</responseBinaryMimeTypesRegex>
         <multipart>false</multipart>
         <useAuthentication>true</useAuthentication>
         <authenticationType>Basic</authenticationType>
-        <usePreemptiveAuthentication>false</usePreemptiveAuthentication>
-        <username>${env.get(&apos;OPENHIM_CLIENT&apos;)}</username>
-        <password>${env.get(&apos;OPENHIM_CLIENT_PASSWORD&apos;)}</password>
-        <content>${body}</content>
-        <contentType>application/hl7-v2</contentType>
+        <usePreemptiveAuthentication>true</usePreemptiveAuthentication>
+        <username>${env.get(&apos;I_SANTE_PLUS_USERNAME&apos;)}</username>
+        <password>${env.get(&apos;I_SANTE_PLUS_PASSWORD&apos;)}</password>
+        <content>{
+&quot;timestamp&quot;: &quot;${timestamp}&quot;,
+&quot;response&quot; : &quot;${response}&quot;
+}</content>
+        <contentType>application/json</contentType>
         <dataTypeBinary>false</dataTypeBinary>
         <charset>UTF-8</charset>
         <socketTimeout>30000</socketTimeout>
       </properties>
       <transformer version="3.5.0">
         <elements/>
-        <inboundTemplate encoding="base64">ewogICJkYXRhIiA6IFsKICAgIHsKICAgICAgImlkIiA6IDEsCiAgICAgICJ1c2VyIiA6IHsKICAg
-ICAgICAidXVpZCIgOiAiYTc5ODM5MzUtNjU2ZC0xMWU3LTkyNTktMjA0NzQ3NzUwMWFhIiwKICAg
-ICAgICAibmFtZSIgOiAiIgogICAgICB9LAogICAgICAiZGVzdGluYXRpb24iIDogIkdkYW5zayIs
-CiAgICAgICJ0aW1lc3RhbXAiIDogIjIwMTctMDYtMDYgMDA6MDA6MDAuMCIsCiAgICAgICJmYWls
-dXJlIiA6IHRydWUsCiAgICAgICJ0eXBlIiA6ICJQSVgiLAoJICAibWVzc2FnZUJvZHkiIDogImFk
-YSIKICAgIH0KCV0KfQ==</inboundTemplate>
-        <outboundTemplate encoding="base64"></outboundTemplate>
         <inboundDataType>HL7V2</inboundDataType>
         <outboundDataType>HL7V2</outboundDataType>
         <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.0">
@@ -257,17 +253,13 @@ YSIKICAgIH0KCV0KfQ==</inboundTemplate>
       </transformer>
       <responseTransformer version="3.5.0">
         <elements/>
-        <inboundTemplate encoding="base64">TVNIfF5+XCZ8TUVTQV9YUkVGfFhZWl9IT1NQSVRBTHxPUEVOTVJTfElTQU5URXwyMDE3MDgyNDA4
-NDcyNyswMDAwfHxBQ0teQTAxfGFjMTIwMDBiMTVlMTM2Y2JkOTIxfFB8Mi4zLjENTVNBfEFBfDQ0
-MjBjZDZhLTY5NTQtNDc5Zi04MWFjLWI5ZjgzNGRlNzQ1Zg==</inboundTemplate>
-        <outboundTemplate encoding="base64"></outboundTemplate>
         <inboundDataType>HL7V2</inboundDataType>
         <outboundDataType>HL7V2</outboundDataType>
         <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.0">
           <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.0">
             <handleRepetitions>true</handleRepetitions>
             <handleSubcomponents>true</handleSubcomponents>
-            <useStrictParser>true</useStrictParser>
+            <useStrictParser>false</useStrictParser>
             <useStrictValidation>false</useStrictValidation>
             <stripNamespaces>true</stripNamespaces>
             <segmentDelimiter>\r</segmentDelimiter>
@@ -297,7 +289,7 @@ MjBjZDZhLTY5NTQtNDc5Zi04MWFjLWI5ZjgzNGRlNzQ1Zg==</inboundTemplate>
             <successfulACKCode>AA,CA</successfulACKCode>
             <errorACKCode>AE,CE</errorACKCode>
             <rejectedACKCode>AR,CR</rejectedACKCode>
-            <validateMessageControlId>false</validateMessageControlId>
+            <validateMessageControlId>true</validateMessageControlId>
             <originalMessageControlId>Destination_Encoded</originalMessageControlId>
             <originalIdMapVariable></originalIdMapVariable>
           </responseValidationProperties>
@@ -306,14 +298,14 @@ MjBjZDZhLTY5NTQtNDc5Zi04MWFjLWI5ZjgzNGRlNzQ1Zg==</inboundTemplate>
           <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.0">
             <handleRepetitions>true</handleRepetitions>
             <handleSubcomponents>true</handleSubcomponents>
-            <useStrictParser>true</useStrictParser>
+            <useStrictParser>false</useStrictParser>
             <useStrictValidation>false</useStrictValidation>
             <stripNamespaces>true</stripNamespaces>
             <segmentDelimiter>\r</segmentDelimiter>
             <convertLineBreaks>true</convertLineBreaks>
           </serializationProperties>
           <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.0">
-            <useStrictParser>true</useStrictParser>
+            <useStrictParser>false</useStrictParser>
             <useStrictValidation>false</useStrictValidation>
             <segmentDelimiter>\r</segmentDelimiter>
           </deserializationProperties>
@@ -351,53 +343,26 @@ MjBjZDZhLTY5NTQtNDc5Zi04MWFjLWI5ZjgzNGRlNzQ1Zg==</inboundTemplate>
       <waitForPrevious>true</waitForPrevious>
     </connector>
   </destinationConnectors>
-  <preprocessingScript>/* 
-&quot;data&quot; : [
-    {
-      &quot;id&quot; : integer,
-      &quot;user&quot; : {
-        &quot;uuid&quot; : String,
-        &quot;name&quot; : String
-      },
-      &quot;destination&quot; : String,
-      &quot;timestamp&quot; : DateTime,
-      &quot;failure&quot; : boolean,
-      &quot;type&quot; : String
-    }
-  ]
- */
- //TODO: iterate array and send retries to iSantePlus rest/isanteplus/messages/{id}/retry. That request should update fields retried and retryTimestamp from message.
+  <preprocessingScript>// Modify the message variable below to pre process data
 
-var pixMessage = message;
 
-pixMessage = pixMessage.split(&quot;\t&quot;);
+var format = &quot;yyyy-MM-dd&quot;;
 
-globalMap.put(&quot;messageID&quot;, pixMessage[0]);
-globalMap.put(&quot;body&quot;, pixMessage[1]);
+var currentDateString = DateUtil.getCurrentDate(format);
 
-return;</preprocessingScript>
+globalMap.put(&quot;timestamp&quot;, currentDateString);
+
+var response = message.split(&quot;\t&quot;);
+
+globalMap.put(&quot;messageID&quot;, response[0]);
+globalMap.put(&quot;response&quot;, response[1]);
+
+return message;</preprocessingScript>
   <postprocessingScript>// This script executes once after a message has been processed
 // Responses returned from here will be stored as &quot;Postprocessor&quot; in the response map
 
-//logger.info(&quot;Response from OpenHIM = &quot; + responseMap.get(&quot;d1&quot;).getMessage());
+logger.info(&quot;d1 = &quot; + responseMap.get(&quot;d1&quot;));
 
-var pixResponse = responseMap.get(&quot;d1&quot;).getMessage();
-
-logger.info(&quot;Response from OpenHIM: &quot; + pixResponse);
-
-if (msg != null) {
-	pixResponse = pixResponse.replace(&quot;\&amp;&quot;,&quot;\\&amp;&quot;);
-	pixResponse = pixResponse.replace(pixResponse.substring(pixResponse.length()-1), &quot;&quot;);
-
-
-	var id = globalMap.get(&quot;messageID&quot;);
-
-	if (pixResponse.indexOf(&quot;|AA|&quot;) != -1) {
-		router.routeMessage(&apos;PixMessageRetrySuccess&apos;, id + &apos;\t&apos; + pixResponse);
-	} else {
-		router.routeMessage(&apos;PixMessageRetryFailed&apos;, id + &apos;\t&apos; + pixResponse);
-	}
-}
 return;</postprocessingScript>
   <deployScript>// This script executes once when the channel is deployed
 // You only have access to the globalMap and globalChannelMap here to persist data
@@ -443,7 +408,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1503912539931</time>
+        <time>1503912637724</time>
         <timezone>Europe/Warsaw</timezone>
       </lastModified>
       <pruningSettings>

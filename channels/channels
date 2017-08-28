@@ -6,6 +6,9 @@ import "/opt/mirth-connect/channels/Get CCD Messages.xml" force
 import "/opt/mirth-connect/channels/Get PIX Messages.xml" force
 import "/opt/mirth-connect/channels/Get XDSB Messages.xml" force
 
+import "/opt/mirth-connect/channels/PixMessageRetrySuccess.xml" force
+import "/opt/mirth-connect/channels/PixMessageRetryFailed.xml" force
+
 deploy "Retry CCD Message"
 deploy "Retry XDSB Message"
 deploy "Retry PIX Message"
@@ -14,3 +17,5 @@ deploy "Get CCD Messages"
 deploy "Get XDSB Messages"
 deploy "Get PIX Messages"
 
+deploy "PixMessageRetrySuccess"
+deploy "PixMessageRetryFailed"
