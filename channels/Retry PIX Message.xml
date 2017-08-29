@@ -3,7 +3,7 @@
   <nextMetaDataId>4</nextMetaDataId>
   <name>Retry PIX Message</name>
   <description></description>
-  <revision>38</revision>
+  <revision>4</revision>
   <sourceConnector version="3.5.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -385,19 +385,19 @@ var pixResponse = responseMap.get(&quot;d1&quot;).getMessage();
 
 logger.info(&quot;Response from OpenHIM: &quot; + pixResponse);
 
-if (msg != null) {
+if (pixResponse != &quot;&quot;) {
 	pixResponse = pixResponse.replace(&quot;\&amp;&quot;,&quot;\\&amp;&quot;);
 	pixResponse = pixResponse.replace(pixResponse.substring(pixResponse.length()-1), &quot;&quot;);
-
-
-	var id = globalMap.get(&quot;messageID&quot;);
-
-	if (pixResponse.indexOf(&quot;|AA|&quot;) != -1) {
-		router.routeMessage(&apos;PixMessageRetrySuccess&apos;, id + &apos;\t&apos; + pixResponse);
-	} else {
-		router.routeMessage(&apos;PixMessageRetryFailed&apos;, id + &apos;\t&apos; + pixResponse);
-	}
 }
+
+var id = globalMap.get(&quot;messageID&quot;);
+
+if (pixResponse.indexOf(&quot;|AA|&quot;) != -1) {
+	router.routeMessage(&apos;PixMessageRetrySuccess&apos;, id + &apos;\t&apos; + pixResponse);
+} else {
+	router.routeMessage(&apos;PixMessageRetryFailed&apos;, id + &apos;\t&apos; + pixResponse);
+}
+
 return;</postprocessingScript>
   <deployScript>// This script executes once when the channel is deployed
 // You only have access to the globalMap and globalChannelMap here to persist data
@@ -443,7 +443,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1503912539931</time>
+        <time>1504001574617</time>
         <timezone>Europe/Warsaw</timezone>
       </lastModified>
       <pruningSettings>
