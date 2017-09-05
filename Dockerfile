@@ -32,12 +32,12 @@ RUN chmod +x /tmp/setup_db.sh && \
 
 WORKDIR /opt/mirth-connect
 
-COPY run.sh run.sh
+COPY cmd.sh cmd.sh
 
-RUN chmod +x /opt/mirth-connect/run.sh
+RUN chmod +x /opt/mirth-connect/cmd.sh
 
 ADD channels /opt/mirth-connect/channels
 
 
-ENTRYPOINT ["/opt/mirth-connect/run.sh"]
+ENTRYPOINT ["/opt/mirth-connect/cmd.sh"]
 
